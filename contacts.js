@@ -15,7 +15,7 @@ async function listContacts() {
 async function getContactById(contactId) {
   // ...твій код. Повертає об'єкт контакту з таким id. Повертає null, якщо контакт з таким id не знайдений.
     const data = await listContacts();
-    data.find((item) => item.id === contactId);
+    const result = data.find((item) => item.id === contactId);
     return result ? result : null;
 }
 
@@ -27,7 +27,7 @@ async function removeContact(contactId) {
     const removedContact = data[index];
     if (index !== -1) {
     data.splice(index, 1);
-    await fs.writeFile(contactsPath, JSON.stringify(data));
+    await fs.writeFile(contactsPath, JSON.stringify(data, null, 2));
   }
     return removedContact ? removedContact : null;
 }
